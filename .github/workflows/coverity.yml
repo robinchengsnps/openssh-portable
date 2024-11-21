@@ -13,12 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: cd
-      run: ls
     - name: configure
-      run: ./configure
-    - name: make
-      run: make -j8
+      run: autoreconf && ./configure
+    - name: make clean
+      run: make clean
+    - name: coverity configure
+      run: cov-configure --gcc && cov-configure --compiler cc --comptype gcc --template
+    - name: coverity build
+      run: cov-build --dir idir make -j8
     #- name: make check
     #  run: make check
     #- name: make distcheck
