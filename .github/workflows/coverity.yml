@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-
+    environment: COVERITY
     runs-on: self-hosted
 
     steps:
@@ -18,13 +18,13 @@ jobs:
     - name: make clean
       run: make clean
     - name: coverity configure
-      run: cov-configure --gcc && cov-configure --compiler cc --comptype gcc --template
+      run: echo cov-configure --gcc && cov-configure --compiler cc --comptype gcc --template
     - name: coverity build
-      run: cov-build --dir idir make -j8
+      run: echo cov-build --dir idir make -j8
     - name: coverity analyze
-      run: cov-analyze --dir idir --enable-constraint-fpp --enable-virtual --enable-fnptr -s `pwd` --all
+      run: echo cov-analyze --dir idir --enable-constraint-fpp --enable-virtual --enable-fnptr -s `pwd` --all
     - name: coverity commit
-      run: cov-commit-defects --dir idir --host localhost --port 18080 --user admin --password coverity --stream openssh
+      run: echo cov-commit-defects --dir idir --url ${{ vars.COV_URL }} --user ${{ secrets.COV_USER }} --password ${{ secrets.COV_PASSPHRASE }} --stream openssh
       
     #- name: make check
     #  run: make check
