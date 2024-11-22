@@ -1,0 +1,23 @@
+# Coverity configuration file.
+# The schema is available here: <install-dir>/doc/configuration-schema.json
+capture:
+  build:
+    clean-command: "make clean"
+    build-command: "make -j 10"
+  compiler-configuration:
+    cov-configure:
+    - [ --template, --compiler, cc, --comptype, gcc ]
+    - [ --template, --compiler, c++, --comptype, g++ ]
+    - [ --template, --compiler, gcc, --comptype, gcc ]
+# Specifies how the project should be analyzed.
+analyze:
+  aggressiveness-level: "high"
+  trust:
+    all: false
+  checkers:
+    all: true
+    audit: true
+    android-security: true
+    c-family-security: true
+    webapp-security:
+      aggressiveness-level: "high"
