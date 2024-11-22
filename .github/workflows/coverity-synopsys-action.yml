@@ -20,7 +20,7 @@ jobs:
     - name: Coverity Scan
       uses: synopsys-sig/synopsys-action@v1.13.0
       with:
-        coverity_url: ${{ vars.COVERITY_NGROK_URL }}
+        coverity_url: ${{ vars.COV_URL }}
         coverity_user: ${{ secrets.COV_USER }}
         coverity_passphrase: ${{ secrets.COVERITY_PASSPHRASE }}
         coverity_policy_view: ${{ github.event_name != 'pull_request' && 'Outstanding Issues' || '' }}
