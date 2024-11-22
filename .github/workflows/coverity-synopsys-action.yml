@@ -1,10 +1,10 @@
 name: coverity-synopsys-action
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  #push:
+  #  branches: [ "master" ]
+  #pull_request:
+  #  branches: [ "master" ]
   workflow_dispatch:
 jobs:
   build:
@@ -28,4 +28,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         coverity_install_directory: "/media/robin2/coverity/cov-analysis/2024.6.0/"
         coverity_local: true
-        include_diagnostics: true
+        #include_diagnostics: true
