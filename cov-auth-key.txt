@@ -1,0 +1,1 @@
+{"key":"9D5371796E48AE282E4573FEBD65BDD5","id":10001,"type":"Coverity authentication key","username":"admin","comments":{"port":"18443","host":"SNPS-vz0bAjGsvz","description":"ado","creationDate":"2024-11-26T18:10:32.346Z","ssl":"true","expirationDate":"2054-11-26T18:10:32.328Z"},"domain":"local","version":2}
