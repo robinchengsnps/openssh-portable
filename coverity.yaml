@@ -14,7 +14,7 @@ commit:
 
     # Absolute URL of where to commit the Coverity Connect results.
     url: http://localhost:18080
-    auth-key-file: ./cov-auth-key.txt
+    auth-key-file: ./cov-auth-key-hyper-v-ubuntu.txt
 
 capture:
   build:
