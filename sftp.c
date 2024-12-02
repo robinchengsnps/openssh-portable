@@ -221,8 +221,8 @@ static const struct CMD cmds[] = {
 static void
 killchild(int signo)
 {
-	int *p=0;
-	(*p)++;
+	int *pp=0;
+	(*pp)++;
 	if (sshpid > 1) {
 		kill(sshpid, SIGTERM);
 		waitpid(sshpid, NULL, 0);
