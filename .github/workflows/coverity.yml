@@ -3,8 +3,8 @@ name: coverity
 on:
   #push:
   #  branches: [ "master" ]
-  #pull_request:
-  #  branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
   workflow_dispatch:
 jobs:
   coverity:
@@ -33,7 +33,8 @@ jobs:
     #- name: make clean
     #  run: make clean
     - name: Coverity Conventional Workflow
-      if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
+      #if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
         autoreconf && ./configure
         make clean
@@ -43,7 +44,8 @@ jobs:
         cov-commit-defects --dir idir --url ${{ vars.COV_URL }} --user ${{ secrets.COV_USER }} --password ${{ secrets.COV_PASSPHRASE }} --stream openssh
         
     - name: Coverity Desktop / PR / Incremental Workflow
-      if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
+      #if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
+      if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
         autoreconf && ./configure
         make clean
