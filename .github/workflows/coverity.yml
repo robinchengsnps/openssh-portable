@@ -22,23 +22,7 @@ jobs:
           changed_files=$(git diff --name-only -r HEAD^1 HEAD)
           echo $changed_files
         fi  
-    #- name: Get changed files
-    #  id: changed-files
-    #  run: |
-    #    if ${{ github.event_name == 'pull_request' }}; then
-    #      echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
-    #    else
-    #      echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
-    #    fi        
-    #- name: List changed files
-    #  run: |
-    #    for file in ${{ steps.changed-files.outputs.changed_files }}; do
-    #      echo "$file was changed"
-    #    done        
-    #- name: configure
-    #  run: autoreconf && ./configure
-    #- name: make clean
-    #  run: make clean
+        
     - name: Coverity Conventional Workflow
       #if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
       if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -57,8 +41,9 @@ jobs:
         git diff --name-only -r HEAD^1 HEAD > change.list
         echo 'Changed files during PR:'
         cat change.list
-        
-        cov-build --dir idir make -j8
+
+        rm -rf idir-desktop
+        cov-build --dir idir-desktop make -j8
         cov-run-desktop  --url ${{ vars.COV_URL }}                 \
                          --user ${{ secrets.COV_USER }}            \
                          --password ${{ secrets.COV_PASSPHRASE }}  \
