@@ -15,6 +15,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+        clean: false
     - name: Print Changed Files
       run: |
         if ${{ github.event_name == 'pull_request' }}; then
