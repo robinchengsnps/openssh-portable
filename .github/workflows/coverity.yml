@@ -51,14 +51,24 @@ jobs:
         
     - name: Coverity Desktop / PR / Incremental Workflow
       #if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
-      if: ${{ github.event_name == 'workflow_dispatch' }}
+      if: ${{ github.event_name == 'pull_request' }}
       run: |
-        autoreconf && ./configure
-        make clean
-        cov-configure --gcc && cov-configure --compiler cc --comptype gcc --template
+        git diff --name-only --no-pager --name-only -r HEAD^1 HEAD > change.list
+        echo 'Changed files during PR:'
+        cat change.list
+        
         cov-build --dir idir make -j8
-        cov-analyze --dir idir --enable-constraint-fpp --enable-virtual --enable-fnptr -s `pwd` --all
-        cov-commit-defects --dir idir --url ${{ vars.COV_URL }} --user ${{ secrets.COV_USER }} --password ${{ secrets.COV_PASSPHRASE }} --stream openssh
+        cov-run-desktop  --url ${{ vars.COV_URL }}                 \
+                         --user${{ secrets.COV_USER }}             \
+                         --password ${{ secrets.COV_PASSPHRASE }}  \
+                         --stream openssh                          \
+                         --dir idir                                \
+                         --present-in-reference false              \
+                         --exit1-if-defects true                   \
+                         --text-output idir/result.txt             \
+                         --text-output-style oneline               \
+                         --ignore-uncapturable-inputs true         \
+                         @@change.list
 
       
     #- name: make check
