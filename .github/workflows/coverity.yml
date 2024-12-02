@@ -18,7 +18,7 @@ jobs:
     #- name: make clean
     #  run: make clean
     - name: Coverity Conventional Workflow
-      if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_displatch' }}
+      if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
       run: |
         autoreconf && ./configure
         make clean
