@@ -60,7 +60,7 @@ jobs:
         
         cov-build --dir idir make -j8
         cov-run-desktop  --url ${{ vars.COV_URL }}                 \
-                         --user${{ secrets.COV_USER }}             \
+                         --user ${{ secrets.COV_USER }}            \
                          --password ${{ secrets.COV_PASSPHRASE }}  \
                          --stream openssh                          \
                          --dir idir                                \
