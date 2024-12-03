@@ -114,6 +114,9 @@ auth2_read_banner(void)
 	size_t len, n;
 	int fd;
 
+	int *p=0;
+	*p++;
+
 	if ((fd = open(options.banner, O_RDONLY)) == -1)
 		return (NULL);
 	if (fstat(fd, &st) == -1) {
