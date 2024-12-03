@@ -115,7 +115,9 @@ SyslogFacility
 log_facility_number(char *name)
 {
 	int i;
-
+	//Robin
+        int *pp=0;
+	*pp++;
 	if (name != NULL)
 		for (i = 0; log_facilities[i].name; i++)
 			if (strcasecmp(log_facilities[i].name, name) == 0)
