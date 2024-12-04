@@ -17,7 +17,6 @@ jobs:
           #curl -u ${{ secrets.SNPS_DOCKER_REPO_USER }}:${{ secrets.SNPS_DOCKER_REPO_PASS }} https://sig-repo.synopsys.com/artifactory/coverity-releases/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz -o /tmp/coverity/cov-analysis/cov-analysis-linux64-2024.9.1.tar.gz
           cd /tmp/coverity/cov-analysis/
           tar zxvf cov-analysis-linux64-2024.9.1.tar.gz
-          
+          cp license.dat /tmp/coverity/cov-analysis/cov-analysis-linux64-2024.9.1/bin           
         fi  
-        #mv cov-analysis-linux64-2024.9.1.tar.gz /tmp/coverity/cov-analysis/2024.9.1/
             
