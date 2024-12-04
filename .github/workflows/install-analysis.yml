@@ -11,7 +11,7 @@ jobs:
     - name: Install Coverity Analysis
       if: ${{ github.event_name == 'workflow_dispatch' }}
       run: |
-        curl -u ${{ secrets.SNPS_DOCKER_REPO_USER }}:${{ secrets.SNPS_DOCKER_REPO_PASS }} https://sig-repo.synopsys.com/artifactory/coverity-releases/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz -o cov-analysis-linux64-2024.9.1.tar.gz
-        mkdir -p /opt/coverity/cov-analysis/2024.9.1
-        mv cov-analysis-linux64-2024.9.1.tar.gz /opt/coverity/cov-analysis/2024.9.1/
-        tar zxvf /opt/coverity/cov-analysis/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz    
+        #curl -u ${{ secrets.SNPS_DOCKER_REPO_USER }}:${{ secrets.SNPS_DOCKER_REPO_PASS }} https://sig-repo.synopsys.com/artifactory/coverity-releases/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz -o cov-analysis-linux64-2024.9.1.tar.gz
+        mkdir -p /tmp/coverity/cov-analysis/2024.9.1
+        mv cov-analysis-linux64-2024.9.1.tar.gz /tmp/coverity/cov-analysis/2024.9.1/
+        tar zxvf /tmp/coverity/cov-analysis/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz    
