@@ -14,8 +14,10 @@ jobs:
         DIR=/tmp/coverity/cov-analysis/cov-analysis-linux64-2024.9.1/
         if [ ! -d "$DIR" ]; then
           mkdir -p /tmp/coverity/cov-analysis
-          curl -u ${{ secrets.SNPS_DOCKER_REPO_USER }}:${{ secrets.SNPS_DOCKER_REPO_PASS }} https://sig-repo.synopsys.com/artifactory/coverity-releases/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz -o /tmp/coverity/cov-analysis/cov-analysis-linux64-2024.9.1.tar.gz
-          tar zxvf /tmp/coverity/cov-analysis/cov-analysis-linux64-2024.9.1.tar.gz /tmp/coverity/
+          #curl -u ${{ secrets.SNPS_DOCKER_REPO_USER }}:${{ secrets.SNPS_DOCKER_REPO_PASS }} https://sig-repo.synopsys.com/artifactory/coverity-releases/2024.9.1/cov-analysis-linux64-2024.9.1.tar.gz -o /tmp/coverity/cov-analysis/cov-analysis-linux64-2024.9.1.tar.gz
+          cd /tmp/coverity/cov-analysis/
+          tar zxvf cov-analysis-linux64-2024.9.1.tar.gz
+          
         fi  
         #mv cov-analysis-linux64-2024.9.1.tar.gz /tmp/coverity/cov-analysis/2024.9.1/
             
